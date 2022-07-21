@@ -14,25 +14,25 @@ jobs:
           name: Build docker container for each microservices
           command: |
             echo "--------- Installing dependencies-----------"
-            sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz
-            sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
-            sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
-            node --version => v18.0.0
+            sudo curl -LO https://nodejs.org/dist/v28.0.0/node-v28.0.0-linux-x64.tar.xz
+            sudo tar -xvf node-v28.0.0-linux-x64.tar.xz
+            sudo cp -r node-v28.0.0-linux-x64/{bin,include,lib,share} /usr/
+            node --version => v28.0.0
             sudo apt install nodejs
 
             echo "--------- The images is Building ------------"
 
             docker build -t udagram-api-feed ./udagram-api-feed
-            docker tag udagram-api-feed 4568910/udagram-api-feed:v1
+            docker tag udagram-api-feed 4568910/udagram-api-feed:v2
 
             docker build -t udagram-api-user ./udagram-api-user
-            docker tag udagram-api-user 4568910/udagram-api-user:v1
+            docker tag udagram-api-user 4568910/udagram-api-user:v2
             
             docker build -t udagram-frontend ./udagram-frontend
-            docker tag udagram-frontend 4568910/udagram-frontend:v1
+            docker tag udagram-frontend 4568910/udagram-frontend:v2
 
             docker build -t udagram-reverseproxy ./udagram-reverseproxy
-            docker tag udagram-reverseproxy 4568910/udagram-reverseproxy:v1
+            docker tag udagram-reverseproxy 4568910/reverseproxy:v2
 
             echo "-------- All images succesfully built----------"
 
@@ -42,10 +42,10 @@ jobs:
 
             echo "-------------- Pushing images to dockerhub-------"
 
-            docker push 4568910/udagram-api-feed:v1
-            docker push 4568910/udagram-api-user:v1
-            docker push 4568910/udagram-frontend:v1
-            docker push 4568910/udagram-reverseproxy:v1
+            docker push 4568910/udagram-api-feed:v2
+            docker push 4568910/udagram-api-user:v2
+            docker push 4568910/udagram-frontend:v2
+            docker push 4568910/reverseproxy:v2
 
 workflows:
   default:
