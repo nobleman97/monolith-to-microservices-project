@@ -42,4 +42,6 @@ venv/
 !.elasticbeanstalk/*.global.yml
 set_env.sh
 deployment/*
+travis.txt
+
 
